@@ -8,10 +8,7 @@ pipeline{
         }
          stage("Upload Artifacts"){
             steps{
-               script{
-                    def pom = readMavenPom file: 'pom.xml'
-                    def version = pom.version
-                    def repoName = version.endsWith("SNAPSHOT") ? "do-snapshot": "do-release"
+               
                     nexusArtifactUploader artifacts: [[artifactId: 'doctor-online', classifier: '', file: 'target/doctor-online.war', type: 'war']], 
                         credentialsId: 'nexus3', 
                         groupId: 'in.javahome', 
@@ -20,7 +17,7 @@ pipeline{
                         protocol: 'http', 
                         repository: repoName, 
                         version: version
-               }
+               
             }
         }
 
