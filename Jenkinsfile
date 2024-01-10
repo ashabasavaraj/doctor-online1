@@ -6,9 +6,7 @@ pipeline{
                sh 'mvn package'
            } 
         }
-         stage("Upload Artifacts"){
-            
-
+        
  stage("Upload Artifacts"){
             steps{
                script{
